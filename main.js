@@ -24,6 +24,24 @@ let dirtyJSON = [
 
 ];
 
+let menuJson;
+
+function fetchJSON() {
+    //console.log('fetched');
+    fetch("https://b10bc-weu-httptriggeranish-fa.azurewebsites.net/api/HelloWorld", {
+        method: 'GET'        
+    })
+    .then((response) => response.json())
+    .then((result) => {
+        console.log('Succes: ', result);
+        menuJson = result;
+        createMenuInterface(menuJson);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+}
+
 let order = {
     "entries": [],
 };
@@ -78,6 +96,7 @@ function parseMenuItem(id, item, price) {
     renderHook.append(menuElement);
 }
 
-function createMenuInterface() {
-    dirtyJSON.forEach(item => parseMenuItem(item.id, item.Dish, item.Price));
+function createMenuInterface(file) {
+    //fetchJSON();
+    file.forEach(item => parseMenuItem(item.id, item.Dish, item.Price));
 }
