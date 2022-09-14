@@ -20,7 +20,7 @@ let dirtyJSON = [
 
     {"id":9,"Dish":"Cosmopolitan","Price":7.99},
 
-    {"id":10,"Dish":"Moscow Mule","Price":3.79}
+    {"id":10,"Dish":"Moscow Mule","Price":3.99}
 
 ];
 
