@@ -1,34 +1,37 @@
-let dirtyJSON = [
+// let dirtyJSON = [
 
-    {"id":0,"Dish":"Smoked Salmon","Price":6.25},
+//     {"id":0,"Dish":"Smoked Salmon","Price":6.25},
 
-    {"id":1,"Dish":"Carrot Soup","Price":3.55},
+//     {"id":1,"Dish":"Carrot Soup","Price":3.55},
 
-    {"id":2,"Dish":"Chicken Balerno","Price":9.35},
+//     {"id":2,"Dish":"Chicken Balerno","Price":9.35},
 
-    {"id":3,"Dish":"Roast Beef","Price":10.00},
+//     {"id":3,"Dish":"Roast Beef","Price":10.00},
 
-    {"id":4,"Dish":"Pizza Americana","Price":10.20},
+//     {"id":4,"Dish":"Pizza Americana","Price":10.20},
 
-    {"id":5,"Dish":"Chocolate gateau","Price":4.00},
+//     {"id":5,"Dish":"Chocolate gateau","Price":4.00},
 
-    {"id":6,"Dish":"Chocolate Cake","Price":4.50},
+//     {"id":6,"Dish":"Chocolate Cake","Price":4.50},
 
-    {"id":7,"Dish":"Coffee and Mints","Price":2.50},
+//     {"id":7,"Dish":"Coffee and Mints","Price":2.50},
 
-    {"id":8,"Dish":"Margarita lemon","Price":7},
+//     {"id":8,"Dish":"Margarita lemon","Price":7},
 
-    {"id":9,"Dish":"Cosmopolitan","Price":7.99},
+//     {"id":9,"Dish":"Cosmopolitan","Price":7.99},
 
-    {"id":10,"Dish":"Moscow Mule","Price":3.79}
+//     {"id":10,"Dish":"Moscow Mule","Price":3.79}
 
-];
+// ];
 
 let menuJson;
 
 function fetchJSON() {
     //console.log('fetched');
-    fetch("https://b10bc-weu-httptriggeranish-fa.azurewebsites.net/api/HelloWorld", {
+    // change to GetMenuFunction
+    // https://b10bc-weu-httptriggerjustus-fa.azurewebsites.net/api/GetMenuFunction
+    // "https://b10bc-weu-httptriggeranish-fa.azurewebsites.net/api/HelloWorld"
+    fetch("https://b10bc-weu-httptriggerjustus-fa.azurewebsites.net/api/GetMenuFunction", {
         method: 'GET'        
     })
     .then((response) => response.json())
@@ -59,6 +62,7 @@ function updateOrderList(item, price) {
     orderElement.innerHTML = `
         <div>
             <p>${item} - €${price}</p>
+            <button>remove</button>
         </div>
     `;
 
