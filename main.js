@@ -26,6 +26,29 @@
 
 let menuJson;
 
+const TEST_BODY = {
+        "Name": "Marijn den Haan",
+        "Quantity": 9001,
+        "Sale": true
+    };
+
+function postOrder() {
+    fetch("https://b10bc-weu-httptriggerjustus-fa.azurewebsites.net/api/TableFunction", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+          },
+        body: JSON.stringify(TEST_BODY)
+    })
+    .then((response) => response.json())
+    .then((TEST_BODY) => {
+        console.log('Succes: ', TEST_BODY);
+    })
+    .catch((error) => {
+        console.log('Error: ', error);
+    })
+}
+
 function fetchJSON() {
     //console.log('fetched');
     // change to GetMenuFunction
