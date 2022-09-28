@@ -1,19 +1,13 @@
 let menuJson;
 
-const TEST_BODY = {
-        "Name": "Marijn den Haan",
-        "Quantity": 5555,
-        "Sale": true
-    };
-
 // HTTP requests
-function postOrder() {
+function postOrder(orderData) {
     fetch("https://b10bc-weu-httptriggerjustus-fa.azurewebsites.net/api/TableFunction", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
           },
-        body: JSON.stringify(TEST_BODY)
+        body: JSON.stringify(orderData)
     })
     .then((response) => response.text())
     .then((data) => {
@@ -21,9 +15,16 @@ function postOrder() {
     })
     .catch((error) => {
         console.log('Error: ', error);
-    })
-}
+    });
 
+    order = {
+        "entries": [],
+        "Name": "Marijn den Haan",
+        "Quantity": 0,
+        "Sale": true,
+    };
+}
+// 
 
 function fetchJSON() {
     fetch("https://b10bc-weu-httptriggerjustus-fa.azurewebsites.net/api/GetMenuFunction", {
@@ -31,7 +32,7 @@ function fetchJSON() {
     })
     .then((response) => response.json())
     .then((result) => {
-        console.log('Succes: ', result);
+        // console.log('Succes: ', result);
         menuJson = result;
         createMenuInterface(menuJson);
     })
@@ -40,16 +41,21 @@ function fetchJSON() {
     });
 }
 
+
 // Order data
 let order = {
     "entries": [],
+    "Name": "Marijn den Haan",
+    "Quantity": 0,
+    "Sale": true,
 };
 
 function updatePriceTotal(entries) {
     let total = 0; 
     entries.forEach((entry) => {
         total += entry[2];
-    })
+    });
+    order.Quantity = total;
     return total;
 }
 
@@ -101,4 +107,14 @@ function parseMenuItem(id, item, price) {
 function createMenuInterface(file) {
     //fetchJSON();
     file.forEach(item => parseMenuItem(item.id, item.Dish, item.Price));
+}
+
+function moneyMaker() {
+    if (order.Quantity === 0) {
+        alert("Your order is empty :( please buy something.");
+    } else {
+        postOrder(order);
+        document.getElementById("orderList").innerHTML = "";
+        document.getElementById("total").innerHTML = "";
+    }
 }
