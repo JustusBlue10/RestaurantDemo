@@ -6,20 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Demo</title>
     <script src="./main.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body onload="fetchJSON()">
     <button onclick="postOrder()">Click me to test azure tables!</button>
 
-    <div>
-        <ul id="menuList"></ul>
-    </div>
+    <div class="container">
+        <div>
+            <ul id="menuList" class="menu-item"></ul>
+        </div>
 
-    <div id="order">
-        <h2>Your Order</h2>
-        <div id="total"></div>
-        <ul id="orderList"></ul>
+        <div id="order" class="order-item">
+            <h2>Your Order</h2>
+            <div id="total"></div>
+            <ul id="orderList"></ul>
+        </div>
     </div>
-    
     
 </body>
 </html>

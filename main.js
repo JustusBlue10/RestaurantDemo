@@ -1,37 +1,12 @@
-// let dirtyJSON = [
-
-//     {"id":0,"Dish":"Smoked Salmon","Price":6.25},
-
-//     {"id":1,"Dish":"Carrot Soup","Price":3.55},
-
-//     {"id":2,"Dish":"Chicken Balerno","Price":9.35},
-
-//     {"id":3,"Dish":"Roast Beef","Price":10.00},
-
-//     {"id":4,"Dish":"Pizza Americana","Price":10.20},
-
-//     {"id":5,"Dish":"Chocolate gateau","Price":4.00},
-
-//     {"id":6,"Dish":"Chocolate Cake","Price":4.50},
-
-//     {"id":7,"Dish":"Coffee and Mints","Price":2.50},
-
-//     {"id":8,"Dish":"Margarita lemon","Price":7},
-
-//     {"id":9,"Dish":"Cosmopolitan","Price":7.99},
-
-//     {"id":10,"Dish":"Moscow Mule","Price":3.79}
-
-// ];
-
 let menuJson;
 
 const TEST_BODY = {
         "Name": "Marijn den Haan",
-        "Quantity": 9001,
+        "Quantity": 5555,
         "Sale": true
     };
 
+// HTTP requests
 function postOrder() {
     fetch("https://b10bc-weu-httptriggerjustus-fa.azurewebsites.net/api/TableFunction", {
         method: 'POST',
@@ -40,20 +15,17 @@ function postOrder() {
           },
         body: JSON.stringify(TEST_BODY)
     })
-    .then((response) => response.json())
-    .then((TEST_BODY) => {
-        console.log('Succes: ', TEST_BODY);
+    .then((response) => response.text())
+    .then((data) => {
+        console.log('Succes: ', data);
     })
     .catch((error) => {
         console.log('Error: ', error);
     })
 }
 
+
 function fetchJSON() {
-    //console.log('fetched');
-    // change to GetMenuFunction
-    // https://b10bc-weu-httptriggerjustus-fa.azurewebsites.net/api/GetMenuFunction
-    // "https://b10bc-weu-httptriggeranish-fa.azurewebsites.net/api/HelloWorld"
     fetch("https://b10bc-weu-httptriggerjustus-fa.azurewebsites.net/api/GetMenuFunction", {
         method: 'GET'        
     })
@@ -68,6 +40,7 @@ function fetchJSON() {
     });
 }
 
+// Order data
 let order = {
     "entries": [],
 };
@@ -80,6 +53,7 @@ function updatePriceTotal(entries) {
     return total;
 }
 
+// Order interface
 function updateOrderList(item, price) {
     const orderElement = document.createElement("li");
     orderElement.innerHTML = `
@@ -106,6 +80,7 @@ function addToOrder(id, item, price) {
     updateOrderList(item, price);
 }
 
+// Menu interface
 function parseMenuItem(id, item, price) {
     const menuElement = document.createElement("li");
     menuElement.innerHTML = `
